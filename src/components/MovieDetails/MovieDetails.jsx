@@ -26,24 +26,25 @@ function MovieDetails () {
 
     return (
         <>
-            <h1>Movie Details</h1>
-            <h2>{movie.title}</h2>
-            <img
-                src={movie.poster}
-            />
-            <h3>Movie Description</h3>
-            <p>{movie.description}</p><br/>
-            <h3>Movie Genres</h3>
-            <table className="table">
-                <tbody>
-                    {genres.map(genre => (
-                        <tr key={genre}>
-                            <td>{genre}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-
+            <div className="container">
+                <h1>Movie Details</h1>
+                <h2>{movie.title}</h2>
+                <img
+                    src={movie.poster}
+                />
+                <h3>Movie Description</h3>
+                <p>{movie.description}</p><br/>
+                <h3>Movie Genres</h3>
+                <table className="table">
+                    <tbody>
+                        {genres.map(genre => (
+                            <tr key={genre}>
+                                <td>{genre}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
             <button onClick={() => routeHome()}>Back to Home Page</button>
         </>
     )
