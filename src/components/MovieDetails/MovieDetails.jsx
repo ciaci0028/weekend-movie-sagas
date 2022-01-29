@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
+import './MovieDetails.css';
 
 function MovieDetails () {
     const history = useHistory();
@@ -20,8 +21,8 @@ function MovieDetails () {
 
 
     const routeHome = () => {
-        history.push('/')
-    }
+        history.push('/');
+    };
 
     return (
         <>
@@ -30,7 +31,17 @@ function MovieDetails () {
             <img
                 src={movie.poster}
             />
-            <p>{movie.description}</p>
+            <p>{movie.description}</p><br/>
+            <h2>Movie Genres</h2>
+            <table className="table">
+                <tbody>
+                    {genres.map(genre => (
+                        <tr key={genre}>
+                            <td>{genre}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
 
             <button onClick={() => routeHome()}>Back to Home Page</button>
         </>

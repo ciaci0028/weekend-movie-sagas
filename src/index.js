@@ -31,13 +31,15 @@ function* fetchAllMovies() {
 
 // Function for getting the genres of selected movie
 function* fetchGenres(action) {
+    console.log('made it to fetch genres');
     try {
         console.log('movie id is', action.payload);
-        const genres = yield axios.get('/api/genre', action.payload);
-        console.log('get all genres:', genres.data);
+        const genres = yield axios.post('/api/genre', {movieID: action.payload} );
+        console.log('get movie genres:', genres.data);
+        yield put({type: 'SET_GENRES', payload: genres.data[0].array_agg})
     }
-    catch {
-        console.log('get genres error');
+    catch(error) {
+        console.log('get genres error', error);
     }
 }; // End of fetch genres
 

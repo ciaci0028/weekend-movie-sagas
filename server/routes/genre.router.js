@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
-router.get('/', (req, res) => {
+router.post('/', (req, res) => {
   // Add query to get all genres
+  console.log('made it to get genre in router', req.body.movieID);
 
   const sqlText = `
     SELECT
@@ -19,7 +20,7 @@ router.get('/', (req, res) => {
   `;
 
   const sqlParams = [
-    req.body
+    req.body.movieID
   ];
 
   pool.query(sqlText, sqlParams)
