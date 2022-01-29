@@ -30,9 +30,16 @@ function MovieList() {
         history.push('/details');
     }; // end of detailed view function
 
+    // function to move user to form
+    const sendToMovieForm = () => {
+        history.push('/form');
+    }
+
     return (
         <main>
             <h1>Movie List</h1>
+            {/* adding a button that brings user to add movie form */}
+            <button onClick={() => sendToMovieForm()}>Add New Movie</button>
             <h4>Click the poster for more information</h4>
             <section className="movies">
                 {movies.map(movie => {
