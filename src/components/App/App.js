@@ -19,6 +19,9 @@ function App() {
         </Route>
 
         {/* Add Movie page */}
+        <Route path="/form" exact>
+          <MovieForm />
+        </Route>
       </Router>
     </div>
   );

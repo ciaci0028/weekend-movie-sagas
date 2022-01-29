@@ -2,6 +2,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import './MovieDetails.css';
+import Button from '@mui/material/Button';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const buttonTheme = createTheme({ 
+    components: {
+        MuiButton: {
+            styleOverrides: {
+                solid: {
+                    backgroundColor: "red"
+                }
+            }
+        }
+    }
+})
 
 function MovieDetails () {
     const history = useHistory();
@@ -27,13 +41,15 @@ function MovieDetails () {
     return (
         <>
             <div className="container">
+                <div className="smallerContainer">
                 <h1>Movie Details</h1>
-                <h2>{movie.title}</h2>
+                <h2 className="movieTitle">{movie.title}</h2>
                 <img
+                    className="picture"
                     src={movie.poster}
                 />
-                <h3>Movie Description</h3>
-                <p>{movie.description}</p><br/>
+                <h3 className="movieDescH3">Movie Description</h3>
+                <p className="movieDesc">{movie.description}</p><br/>
                 <h3>Movie Genres</h3>
                 <table className="table">
                     <tbody>
@@ -45,7 +61,17 @@ function MovieDetails () {
                     </tbody>
                 </table>
             </div>
-            <button onClick={() => routeHome()}>Back to Home Page</button>
+            </div>
+            <ThemeProvider theme={buttonTheme}>
+                <Button 
+                    variant="contained" 
+                    disableElevation
+                    onClick={() => routeHome()}
+                    className="button"
+                >
+                    Back to Home Page
+                </Button>
+            </ThemeProvider>
         </>
     )
 };

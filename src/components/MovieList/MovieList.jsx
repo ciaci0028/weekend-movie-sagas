@@ -2,6 +2,11 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import './MovieList.css';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
 
 function MovieList() {
 
@@ -25,20 +30,39 @@ function MovieList() {
         history.push('/details');
     }; // end of detailed view function
 
+    // function to move user to form
+    const sendToMovieForm = () => {
+        history.push('/form');
+    }
+
     return (
         <main>
-            <h1>MovieList</h1>
+            <h1>Movie List</h1>
+            {/* adding a button that brings user to add movie form */}
+            <button onClick={() => sendToMovieForm()}>Add New Movie</button>
+            <h4>Click the poster for more information</h4>
             <section className="movies">
                 {movies.map(movie => {
                     return (
-                        <div key={movie.id} >
-                            <h3>{movie.title}</h3>
-                            <img 
-                                src={movie.poster} 
-                                alt={movie.title}
-                                onClick={() => goToDetails(movie)}
-                            />
-                        </div>
+                        <Card 
+                            key={movie.id} sx={{ maxWidth: 240 }} 
+                            onClick={() => goToDetails(movie)}
+                            className="movieCard"
+                        >
+                            <CardActionArea>
+                                <CardMedia
+                                    component="img"
+                                    image={movie.poster}
+                                    alt={movie.title}
+                                    className="movieImage"
+                                />
+                                <CardContent>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    {movie.title}
+                                </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                        </Card>
                     );
                 })}
             </section>
@@ -48,3 +72,4 @@ function MovieList() {
 }
 
 export default MovieList;
+
