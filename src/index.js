@@ -34,7 +34,7 @@ function* fetchGenres(action) {
     console.log('made it to fetch genres');
     try {
         console.log('movie id is', action.payload);
-        const genres = yield axios.post('/api/genre', {movieID: action.payload} );
+        const genres = yield axios.get('/api/genre', {params: {movieID: action.payload}} );
         console.log('get movie genres:', genres.data);
         yield put({type: 'SET_GENRES', payload: genres.data[0].array_agg})
     }

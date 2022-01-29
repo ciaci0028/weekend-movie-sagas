@@ -27,12 +27,13 @@ function MovieDetails () {
     return (
         <>
             <h1>Movie Details</h1>
-            <h3>{movie.title}</h3>
+            <h2>{movie.title}</h2>
             <img
                 src={movie.poster}
             />
+            <h3>Movie Description</h3>
             <p>{movie.description}</p><br/>
-            <h2>Movie Genres</h2>
+            <h3>Movie Genres</h3>
             <table className="table">
                 <tbody>
                     {genres.map(genre => (

@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
-router.post('/', (req, res) => {
+router.get('/', (req, res) => {
   // Add query to get all genres
-  console.log('made it to get genre in router', req.body.movieID);
+  console.log('made it to get genre in router', req.query);
 
   const sqlText = `
     SELECT
@@ -15,12 +15,12 @@ router.post('/', (req, res) => {
       ON "movies_genres"."movie_id" = "movies"."id"
     JOIN "genres"
       ON "genres"."id" = "movies_genres"."genre_id"
-    WHERE "movies"."id" = $1
+    WHERE "movies"."id" = $1 
     GROUP BY "movies"."title";
   `;
 
   const sqlParams = [
-    req.body.movieID
+    req.query.movieID
   ];
 
   pool.query(sqlText, sqlParams)
