@@ -1,11 +1,23 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function MovieDetails () {
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const movie = useSelector(store => store.selectedMovie);
-    console.log('details for:', movie);
+    const genres = useSelector(store => store.genres);
+    console.log('details for:', movie, genres);
+
+    useEffect(() => {
+        dispatch({ 
+            type: 'FETCH_GENRES',
+            payload: movie.id
+        });
+    }, []);
+
+
 
     const routeHome = () => {
         history.push('/')
